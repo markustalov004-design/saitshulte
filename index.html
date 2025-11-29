@@ -1,0 +1,395 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ингибиторный контроль - Тренировка мозга</title>
+    <link rel="stylesheet" href="static/style.css">
+</head>
+<body>
+    <!-- Фоновые треугольники -->
+    <div class="triangles-bg">
+        <div class="triangle t1"></div>
+        <div class="triangle t2"></div>
+        <div class="triangle t3"></div>
+        <div class="triangle t4"></div>
+        <div class="triangle t5"></div>
+        <div class="triangle t6"></div>
+        <div class="triangle t7"></div>
+        <div class="triangle t8"></div>
+    </div>
+
+    <!-- Модальное окно авторизации -->
+    <div id="auth-modal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>🔐 Авторизация</h2>
+                <p>Для доступа к играм необходимо представиться</p>
+            </div>
+            <form id="auth-form" class="auth-form">
+                <div class="form-group">
+                    <label for="last-name">Фамилия *</label>
+                    <input type="text" id="last-name" name="lastName" required placeholder="Введите вашу фамилию">
+                </div>
+                <div class="form-group">
+                    <label for="first-name">Имя *</label>
+                    <input type="text" id="first-name" name="firstName" required placeholder="Введите ваше имя">
+                </div>
+                <div class="form-group">
+                    <label for="middle-name">Отчество</label>
+                    <input type="text" id="middle-name" name="middleName" placeholder="Введите ваше отчество">
+                </div>
+                <button type="submit" class="auth-btn">Войти в систему</button>
+            </form>
+            <div class="modal-footer">
+                <p>Ваши данные сохраняются только в этом браузере</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="container">
+        <!-- Заголовок с информацией пользователя -->
+        <header class="header">
+            <div class="header-content">
+                <div class="header-text">
+                    <h1 class="main-title">🧠 Ингибиторный Контроль</h1>
+                    <p class="subtitle">Тренировка когнитивных способностей мозга</p>
+                </div>
+                <div class="user-info" id="user-info" style="display: none;">
+                    <div class="user-avatar" id="user-avatar"></div>
+                    <div class="user-details">
+                        <span class="user-name" id="user-name"></span>
+                        <button class="logout-btn" onclick="logout()">Выйти</button>
+                    </div>
+                </div>
+            </div>
+        </header>
+
+        <!-- Навигация -->
+        <nav class="tabs">
+            <button class="tab-btn active" onclick="showTab('main')">Главная</button>
+            <button class="tab-btn" onclick="checkAuth('schulte')">Таблицы Шульте</button>
+            <button class="tab-btn" onclick="checkAuth('gonogo')">Go/No-Go</button>
+            <button class="tab-btn" onclick="checkAuth('pixel')">Найди пиксель</button>
+            <button class="tab-btn" onclick="checkAuth('results')">Результаты</button>
+        </nav>
+
+        <!-- Главная вкладка -->
+        <div id="main" class="tab-content active">
+            <div class="content-card">
+                <h2>📚 Что такое ингибиторный контроль?</h2>
+                <div class="definition-section">
+                    <div class="text-block">
+                        <p><strong>Ингибиторный контроль</strong> - это способность мозга подавлять автоматические реакции и импульсивное поведение, позволяя принимать осознанные решения. Это ключевой компонент исполнительных функций.</p>
+                    </div>
+                    <div class="image-block">
+                        <div class="brain-image">
+                            🧠
+                        </div>
+                    </div>
+                </div>
+
+                <div class="info-grid">
+                    <div class="info-card">
+                        <h3>🔍 Когнитивные процессы</h3>
+                        <ul>
+                            <li>Подавление доминирующих реакций</li>
+                            <li>Контроль внимания</li>
+                            <li>Эмоциональная регуляция</li>
+                            <li>Принятие решений</li>
+                            <li>Когнитивная гибкость</li>
+                        </ul>
+                    </div>
+
+                    <div class="info-card">
+                        <h3>🎯 Цели развития</h3>
+                        <ul>
+                            <li>Улучшение самоконтроля</li>
+                            <li>Повышение концентрации</li>
+                            <li>Развитие эмоционального интеллекта</li>
+                            <li>Улучшение успеваемости</li>
+                            <li>Повышение продуктивности</li>
+                        </ul>
+                    </div>
+
+                    <div class="info-card">
+                        <h3>💡 Способы развития</h3>
+                        <ul>
+                            <li>Когнитивные тренировки</li>
+                            <li>Медитация и mindfulness</li>
+                            <li>Физическая активность</li>
+                            <li>Здоровый сон</li>
+                            <li>Сбалансированное питание</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Таблицы Шульте -->
+        <div id="schulte" class="tab-content">
+            <div class="content-card">
+                <h2>🎯 Таблицы Шульте</h2>
+                <p class="game-description">Тренировка периферического зрения и концентрации внимания</p>
+
+                <div class="game-instructions">
+                    <h3>📋 Правила:</h3>
+                    <p>Найдите и кликните на числа от 1 до 25 в порядке возрастания как можно быстрее</p>
+                    <p class="unlimited-notice">🎮 Безлимитный режим - играйте сколько угодно раз!</p>
+                </div>
+
+                <div class="schulte-games">
+                    <!-- Классическая таблица -->
+                    <div class="game-box">
+                        <h3>🟢 Классическая таблица</h3>
+                        <div id="schulte-classic" class="schulte-table"></div>
+                        <button onclick="checkGameAuth('startSchulteGame', 'classic')" class="start-btn">Начать игру</button>
+                        <div class="game-info">
+                            <div class="timer" id="timer-classic">Время: 0с</div>
+                            <div class="current-number">Текущее число: <span id="current-classic">1</span></div>
+                            <div class="best-time">Лучшее время: <span id="best-classic">-</span></div>
+                        </div>
+                    </div>
+
+                    <!-- Таблица с видео -->
+                    <div class="game-box">
+                        <h3>🎥 Таблица с видео</h3>
+                        <div class="schulte-video-container">
+                            <div id="schulte-video" class="schulte-table"></div>
+                            <div class="video-wrapper">
+                                <video id="distractionVideo" controls muted loop>
+                                    <source src="static/videos/mem.MP4" type="video/mp4">
+                                    Ваш браузер не поддерживает видео.
+                                </video>
+                            </div>
+                        </div>
+                        <button onclick="checkGameAuth('startSchulteGame', 'video')" class="start-btn">Начать игру</button>
+                        <div class="game-info">
+                            <div class="timer" id="timer-video">Время: 0с</div>
+                            <div class="current-number">Текущее число: <span id="current-video">1</span></div>
+                            <div class="best-time">Лучшее время: <span id="best-video">-</span></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Go/No-Go -->
+        <div id="gonogo" class="tab-content">
+            <div class="content-card">
+                <h2>🎯 Go/No-Go тест</h2>
+                <p class="game-description">Реагируйте только когда центральная стрелка совпадает с направлением кнопки</p>
+
+                <div class="game-instructions">
+                    <h3>📋 Правила:</h3>
+                    <p>Нажимайте стрелки только когда центральная стрелка указывает в том же направлении, что и кнопка</p>
+                </div>
+
+                <div class="gonogo-container">
+                    <div class="arrows-display">
+                        <div class="arrow-row">
+                            <div class="arrow-space"></div>
+                            <div class="arrow-cell" id="arrow-up">↑</div>
+                            <div class="arrow-space"></div>
+                        </div>
+                        <div class="arrow-row">
+                            <div class="arrow-cell" id="arrow-left">←</div>
+                            <div class="arrow-cell main-arrow" id="arrow-center">→</div>
+                            <div class="arrow-cell" id="arrow-right">→</div>
+                        </div>
+                        <div class="arrow-row">
+                            <div class="arrow-space"></div>
+                            <div class="arrow-cell" id="arrow-down">↓</div>
+                            <div class="arrow-space"></div>
+                        </div>
+                    </div>
+
+                    <div class="controls-panel">
+                        <button class="control-btn" onclick="checkGameAuth('handleArrowPress', 'left')">←</button>
+                        <button class="control-btn" onclick="checkGameAuth('handleArrowPress', 'up')">↑</button>
+                        <button class="control-btn" onclick="checkGameAuth('handleArrowPress', 'down')">↓</button>
+                        <button class="control-btn" onclick="checkGameAuth('handleArrowPress', 'right')">→</button>
+                    </div>
+
+                    <button onclick="checkGameAuth('startGoNoGoGame')" class="start-btn large">Начать игру (60 секунд)</button>
+
+                    <div class="game-stats">
+                        <div class="timer" id="gonogo-timer">Осталось: 60с</div>
+                        <div class="score-display">
+                            <span class="correct">✓ Правильно: <span id="gonogo-correct">0</span></span>
+                            <span class="errors">✗ Ошибки: <span id="gonogo-errors">0</span></span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Найди пиксель -->
+        <div id="pixel" class="tab-content">
+            <div class="content-card">
+                <h2>🎯 Найди пиксель</h2>
+                <p class="game-description">Найдите единственный цветной пиксель среди миллионов одинаковых</p>
+
+                <div class="game-instructions">
+                    <h3>📋 Правила игры:</h3>
+                    <div class="pixel-rules">
+                        <div class="rule-item">
+                            <span class="rule-number">1</span>
+                            <p>Экран заполнен однородным фоновым цветом</p>
+                        </div>
+                        <div class="rule-item">
+                            <span class="rule-number">2</span>
+                            <p>Среди миллионов одинаковых точек прячется ровно один уникальный цветной пиксель</p>
+                        </div>
+                        <div class="rule-item">
+                            <span class="rule-number">3</span>
+                            <p>Найдите этот пиксель и кликните на него как можно быстрее</p>
+                        </div>
+                        <div class="rule-item">
+                            <span class="rule-number">4</span>
+                            <p>Игра развивает внимание, концентрацию и зрительное восприятие</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="pixel-game-container">
+                    <div class="game-controls">
+                        <div class="difficulty-selector">
+                            <label>Уровень сложности:</label>
+                            <select id="pixel-difficulty">
+                                <option value="easy">Лёгкий (пиксель 4x4px)</option>
+                                <option value="medium" selected>Средний (пиксель 3x3px)</option>
+                                <option value="hard">Сложный (пиксель 2x2px)</option>
+                                <option value="expert">Эксперт (пиксель 1x1px)</option>
+                            </select>
+                        </div>
+
+                        <div class="color-selector">
+                            <label>Цвет фона:</label>
+                            <select id="pixel-background">
+                                <option value="white" selected>Белый</option>
+                                <option value="black">Чёрный</option>
+                                <option value="gray">Серый</option>
+                                <option value="blue">Голубой</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="pixel-game-area" id="pixel-game-area">
+                        <div class="pixel-canvas-container">
+                            <canvas id="pixel-canvas" width="800" height="500"></canvas>
+                            <div class="pixel-overlay" id="pixel-overlay">
+                                <div class="start-message" id="start-message">
+                                    <h3>Найди скрытый пиксель!</h3>
+                                    <p>Кликните чтобы начать</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="pixel-controls">
+                        <button onclick="checkGameAuth('startPixelGame')" class="start-btn large">Начать игру</button>
+                        <button onclick="checkGameAuth('resetPixelGame')" class="start-btn secondary">Сбросить</button>
+                    </div>
+
+                    <div class="game-stats">
+                        <div class="timer" id="pixel-timer">Время: 0.00с</div>
+                        <div class="score-display">
+                            <span class="attempts">Попытки: <span id="pixel-attempts">0</span></span>
+                            <span class="best">Лучший: <span id="pixel-best">0.00с</span></span>
+                        </div>
+                        <div class="feedback" id="pixel-feedback"></div>
+                    </div>
+
+                    <div class="pixel-history">
+                        <h4>История результатов:</h4>
+                        <div class="history-list" id="pixel-history"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Результаты -->
+        <div id="results" class="tab-content">
+            <div class="content-card">
+                <h2>📊 Результаты тренировок</h2>
+                <p class="game-description">Статистика и прогресс по всем играм</p>
+
+                <div class="results-header">
+                    <div class="overall-stats">
+                        <div class="stat-item">
+                            <h3>🎯 Всего игр сыграно</h3>
+                            <div class="stat-value" id="total-games">0</div>
+                        </div>
+                        <div class="stat-item">
+                            <h3>⏱️ Общее время тренировок</h3>
+                            <div class="stat-value" id="total-time">0 мин</div>
+                        </div>
+                        <div class="stat-item">
+                            <h3>📈 Лучший результат</h3>
+                            <div class="stat-value" id="best-overall">-</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="results-grid">
+                    <div class="result-chart">
+                        <h3>⏱️ Таблица Шульте - Классическая</h3>
+                        <canvas id="chart-schulte-classic" width="400" height="250"></canvas>
+                        <div class="chart-stats" id="stats-schulte-classic">
+                            <div class="stat-line">Игр: <span id="count-classic">0</span></div>
+                            <div class="stat-line">Среднее: <span id="avg-classic">-</span></div>
+                            <div class="stat-line">Лучшее: <span id="best-classic-result">-</span></div>
+                        </div>
+                    </div>
+
+                    <div class="result-chart">
+                        <h3>🎥 Таблица Шульте - С видео</h3>
+                        <canvas id="chart-schulte-video" width="400" height="250"></canvas>
+                        <div class="chart-stats" id="stats-schulte-video">
+                            <div class="stat-line">Игр: <span id="count-video">0</span></div>
+                            <div class="stat-line">Среднее: <span id="avg-video">-</span></div>
+                            <div class="stat-line">Лучшее: <span id="best-video-result">-</span></div>
+                        </div>
+                    </div>
+
+                    <div class="result-chart">
+                        <h3>🎯 Go/No-Go тест</h3>
+                        <canvas id="chart-gonogo" width="400" height="250"></canvas>
+                        <div class="chart-stats" id="stats-gonogo">
+                            <div class="stat-line">Сессий: <span id="count-gonogo">0</span></div>
+                            <div class="stat-line">Точность: <span id="accuracy-gonogo">-</span></div>
+                            <div class="stat-line">Всего ответов: <span id="total-gonogo">0</span></div>
+                        </div>
+                    </div>
+
+                    <div class="result-chart">
+                        <h3>🎯 Найди пиксель</h3>
+                        <canvas id="chart-pixel" width="400" height="250"></canvas>
+                        <div class="chart-stats" id="stats-pixel">
+                            <div class="stat-line">Игр: <span id="count-pixel">0</span></div>
+                            <div class="stat-line">Среднее: <span id="avg-pixel">-</span></div>
+                            <div class="stat-line">Лучшее: <span id="best-pixel-result">-</span></div>
+                            <div class="stat-line">Попыток/игра: <span id="attempts-pixel">-</span></div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="recent-activity">
+                    <h3>📋 Последние активности</h3>
+                    <div class="activity-list" id="activity-list">
+                        <div class="no-data">Пока нет данных об активностях</div>
+                    </div>
+                </div>
+
+                <div class="results-actions">
+                    <button onclick="exportResults()" class="action-btn">📤 Экспорт результатов</button>
+                    <button onclick="clearAllResults()" class="action-btn secondary">🗑️ Очистить все результаты</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="static/script.js"></script>
+</body>
+</html>
